@@ -1,0 +1,28 @@
+.nav{
+    display: grid;
+    grid-template-rows: repeat(6,50px);
+    width: 200px;
+    justify-content: center;
+}
+
+.nav .item{
+    margin-bottom: 25px;
+}
+
+.item a{
+    color: #46e049;
+    list-style: none;
+    text-decoration: none;
+    align-self: center;
+
+    font-size:18px ;
+    padding: 5px;
+}
+
+
+
+
+.item :hover{
+    background-color: #46e049;
+    color: #ffffff;
+}

@@ -1,0 +1,14 @@
+.profile{
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+    justify-content: center;
+}
+
+.info{
+
+}
+
+img{
+    width: 100px;
+    height: auto;
+}

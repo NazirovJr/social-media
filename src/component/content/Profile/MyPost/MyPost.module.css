@@ -1,0 +1,18 @@
+.form{
+    display: grid;
+    width: 500px;
+    grid-template-rows: repeat(3,0.3fr);
+}
+
+
+.btn {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.btn:hover {
+    background-color: #4CAF50;
+
+    color: white;
+}
