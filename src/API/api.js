@@ -31,14 +31,12 @@ export const profileAPI = {
     },
     getStatus:(userId) => {
         return instance.get(`profile/status/${userId}`).then(res => {
-            return res.statusText
+            return res.data
         })
     },
     updateStatus:(status) =>{
-        debugger
         return instance.put(`profile/status`,{status}).then(res => {
-            debugger
-            res.data.message.join('')
+            res.data.messages.join('')
         })
     }
 }

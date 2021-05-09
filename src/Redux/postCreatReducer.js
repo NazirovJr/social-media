@@ -51,7 +51,6 @@ const postCreatReducer = (state=InitializeState,action) => {
                 profile: action.profile
             }
         case SET_USER_STATUS:
-            debugger
             return {
                 ...state,
                 status: action.status
@@ -81,6 +80,7 @@ export const getStatus = (userId) =>{
             dispatch(setUserStatus(data))
             console.log(data)
         }).catch(rej =>{
+            debugger
             console.log(rej)
         })
     }
