@@ -1,3 +1,11 @@
+## Program
+
+The program has some functionalities of Instagram. The program is creating with react, redux, and javaScript in base. You can log in and register, post the posts, can follow other people also can see their posts and profile. This program is not finished in process of learning the react and redux am adding some feathers and other functionalities for this program. After some time I will add the typescript.
+
+
+## Author
+Nazirov Ilhomjon naziroffjr@gmail.com
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
