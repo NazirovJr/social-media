@@ -17,7 +17,7 @@ function postForm(props) {
 
 const PostFormRedux = reduxForm({form:"posts"})(postForm)
 
-const MyPost = (props) =>{
+const MyPost = React.memo((props) =>{
 
     let arr_post = props.postsArr.map(el =>
         <div className={style.item}>
@@ -40,7 +40,7 @@ const MyPost = (props) =>{
             </div>
         </div>
     )
-}
+})
 
 
 

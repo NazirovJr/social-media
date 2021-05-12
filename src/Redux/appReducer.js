@@ -6,7 +6,7 @@ const InitializeState = {
     initialize: false
 }
 
-const appReducer = (state = InitializeState, action) => {
+export const appReducer = (state = InitializeState, action) => {
     switch (action.type) {
         case INITIALIZE_SUCCESS:
             return {
@@ -18,10 +18,10 @@ const appReducer = (state = InitializeState, action) => {
     }
 }
 
-const initializeSuccess = () => ({type: INITIALIZE_SUCCESS})
+export const initializeSuccess = () => ({type: INITIALIZE_SUCCESS})
 
 export const initialized = () => (dispatch) => {
-        dispatch(authUser()).then(res => {
+        dispatch(authUser()).then(() => {
             dispatch(initializeSuccess())
         })
 }
