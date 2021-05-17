@@ -1,6 +1,6 @@
 import {authUser} from "./authReducer";
 
-const INITIALIZE_SUCCESS = 'INITIALIZE_SUCCESS'
+const INITIALIZE_SUCCESS = 'app/INITIALIZE_SUCCESS'
 
 const InitializeState = {
     initialize: false
@@ -20,9 +20,9 @@ export const appReducer = (state = InitializeState, action) => {
 
 export const initializeSuccess = () => ({type: INITIALIZE_SUCCESS})
 
-export const initialized = () => (dispatch) => {
-        dispatch(authUser()).then(() => {
-            dispatch(initializeSuccess())
-        })
+export const initialized = () => async (dispatch) => {
+        await dispatch(authUser())
+       dispatch(initializeSuccess())
+
 }
 export default appReducer

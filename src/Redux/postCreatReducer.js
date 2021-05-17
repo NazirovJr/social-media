@@ -1,10 +1,9 @@
 import {profileAPI, usersAPI} from "../API/api";
 
 
-const ADD_POST = 'ADD-POST'
-const CURRENT_POST_VALUE = 'CURRENT-POST-VALUE'
-const SET_PROFILE_USERS = 'SET-PROFILE-USERS'
-const SET_USER_STATUS = 'SET-USER-STATUS'
+const ADD_POST = 'posCreator/ADD-POST'
+const SET_PROFILE_USERS = 'posCreator/SET-PROFILE-USERS'
+const SET_USER_STATUS = 'posCreator/SET-USER-STATUS'
 
 const  InitializeState = {
     postsArr: [
@@ -65,35 +64,24 @@ export const setUsersProfile = (profile) => ({type:SET_PROFILE_USERS,profile})
 export const setUserStatus = (status) =>({type:SET_USER_STATUS,status})
 
 export const getProfile = (userId) =>{
-    return (dispatch) =>{
-        usersAPI.getProfile(userId).then(data => {
+    return async (dispatch) =>{
+        const data = await usersAPI.getProfile(userId)
             dispatch(setUsersProfile(data))
-        }).catch(rej =>{
-            console.log(rej)
-        })
     }
 }
 
 export const getStatus = (userId) =>{
-    return (dispatch) =>{
-        profileAPI.getStatus(userId).then(data => {
+    return async (dispatch) =>{
+        const data = await profileAPI.getStatus(userId)
             dispatch(setUserStatus(data))
-            console.log(data)
-        }).catch(rej =>{
-            debugger
-            console.log(rej)
-        })
     }
 }
 
 
 export const updateStatus = (status) =>{
-    return (dispatch) =>{
-        profileAPI.updateStatus(status).then(data => {
+    return async (dispatch) =>{
+        const data = await profileAPI.updateStatus(status)
             dispatch(setUserStatus(data))
-        }).catch(rej =>{
-            console.log(rej)
-        })
     }
 }
 

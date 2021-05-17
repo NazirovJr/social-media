@@ -1,0 +1,16 @@
+.pages {
+    font-size: 26px;
+    font-style: italic;
+}
+
+.pages span{
+    margin-right: 10px;
+}
+
+
+
+.activePage{
+    font-weight: bold;
+    color: #46e049;
+    transform: rotateY(45deg);
+}

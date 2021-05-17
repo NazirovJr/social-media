@@ -1,53 +1,17 @@
 import React from "react";
 import style from './Users.module.css'
-import icoDefault from '../../../../assets/image/ico.jpg'
-import {NavLink} from "react-router-dom";
+import User from "./User";
+import NextPannel from "../../../../utilits/scroll/NextPannel";
 
 
 let Users = (props) => {
 
-    let pageCount = Math.ceil(props.totalPage / props.amountUser)
-    let pages = []
-    for (let i = 1; i < pageCount; i++) {
-        pages.push(i)
-    }
     return <div className={style.users}>
-        <div className={style.pages}>
-            {
-                pages.map(el => {
-                    return <span
-                        className={props.currentPage === el && style.activePage}
-                        onClick={(e) => {
-                            props.onPageChange(el)
-                        }}>{el}</span>
-                })
-            }
-        </div>
+        <NextPannel totalPage={props.totalPage} amountUser={props.amountUser} currentPage={props.currentPage} onPageChange={props.onPageChange}/>
         {
-            props.users.map(el => <div>
-                    <div className={style.user}>
-                        <div>
-                            <NavLink to={`/profile/${el.id}`}><img className={style.user_logo}
-                                                                   src={el.photos.small === null ? icoDefault : el.photos.small}
-                                                                   alt=""/></NavLink></div>
-                        <span>
-                    <div className="text">{el.name}</div>
-                </span>
-                        {
-                            el.followed
-                                ?
-                                <button  disabled={props.followInProgress.some(id => id === el.id)} className={style.btn}
-                                         onClick={() => {props.follow(el.id)}}>Follow</button>
-                                : <button disabled={props.followInProgress.some(id => id === el.id)} className={style.btn}
-                                          onClick={() => {props.unFollow(el.id)}}>UnFollow</button>
-                        }
-
-                    </div>
-                </div>
-            )
-
+            props.users.map(user => <User user={user} followInProgress={props.followInProgress} follow={props.follow}
+                                          unFollow={props.unFollow}/>)
         }
-
     </div>
 }
 

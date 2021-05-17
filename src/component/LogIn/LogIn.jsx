@@ -1,6 +1,6 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
-import {Input} from "../FormControl/FormControl";
+import {reduxForm} from "redux-form";
+import {fieldCreator, Input} from "../FormControl/FormControl";
 import {maxLengthCreator, required} from "../../utilits/validator/Validator";
 import {connect} from "react-redux";
 import {loginUser} from "../../Redux/authReducer";
@@ -14,15 +14,9 @@ const LogInForm = (props) => {
         <div className={styles.error}>
             <span>{props.error}</span>
         </div> : ""}
-        <div className="loginForm__input">
-            <Field name = "email" placeholder="email" component={Input} validate={[required, maxLength50]}/>
-        </div>
-        <div className="loginForm__input">
-            <Field name = "password" placeholder="password"  type="password" component={Input} validate={[required, maxLength50]}/>
-        </div>
-        <div className="loginForm__input">
-            <Field name = "rememberMe" component="input" type="checkbox"/> Remember me
-        </div>
+        {fieldCreator("email", "email", Input, [required, maxLength50])}
+        {fieldCreator("password", "password", Input, [required, maxLength50], {type:"password"})}
+        {fieldCreator("rememberMe", "", Input, [], {type:"checkbox"}, "Remember me")}
         <div className="loginForm__button">
             <button>Submit</button>
         </div>

@@ -1,25 +1,24 @@
 import React from 'react'
 import style from './MyPost.module.css'
-import {Field, reduxForm} from "redux-form";
-import {Input, Textaria} from "../../../FormControl/FormControl";
+import {reduxForm} from "redux-form";
+import {fieldCreator, Input, Textaria} from "../../../FormControl/FormControl";
 import {maxLengthCreator, required} from "../../../../utilits/validator/Validator";
 const maxLength50 = maxLengthCreator(50)
 const maxLength30 = maxLengthCreator(30)
-function postForm(props) {
-    return <form className={style.form} onSubmit={props.handleSubmit}>
-        <Field name="title" component={Input} validate={[ required, maxLength30 ]}
-               placeholder="Title"/>
-        <Field name="text" component={Textaria} validate={[ required, maxLength50 ]} placeholder="Input the post"/>
-        <Field component='input' name="url" placeholder="Img url"/>
+function postForm({handleSubmit}) {
+    return <form className={style.form} onSubmit={handleSubmit}>
+        {fieldCreator("title", "title", Input, [ required, maxLength30 ])}
+        {fieldCreator("text", "Input the post", Textaria, [ required, maxLength50 ])}
+        {fieldCreator("Img", "Img url", Input, [])}
         <button type="submit" className={style.btn}>Опубликовать</button>
     </form>;
 }
 
 const PostFormRedux = reduxForm({form:"posts"})(postForm)
 
-const MyPost = React.memo((props) =>{
+const MyPost = React.memo(({postsArr, addPost}) =>{
 
-    let arr_post = props.postsArr.map(el =>
+    let arr_post = postsArr.map(el =>
         <div className={style.item}>
             <img className={`${style.logo}`} src={el.photo} alt="#"/>
             <div className={style.text}>
@@ -30,7 +29,7 @@ const MyPost = React.memo((props) =>{
 
     const onSubmit = (values) => {
         let arr = [values.title,values.text,values.url]
-        props.addPost(arr)
+        addPost(arr)
     }
     return (
         <div className={style.post}>

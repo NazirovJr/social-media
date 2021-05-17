@@ -1,5 +1,4 @@
-const MESSAGE_UPDATE = 'MESSAGE-UPDATE'
-const ADD_MESSAGE= 'ADD-MESSAGE'
+const ADD_MESSAGE= 'message/ADD-MESSAGE'
 
 const InitializeState = {
     chat:[

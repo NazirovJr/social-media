@@ -6,14 +6,13 @@ import {Textaria} from "../../../FormControl/FormControl";
 import {maxLengthCreator, required} from "../../../../utilits/validator/Validator";
 
 
-const Dialogs = (props) => {
-    let messages = props.chatMessage.map(el => <p className={style.message}>{el.message}</p>)
-    let name_arr = props.chatMessage.map(el => <NavLink tp={'#'}>{el.person_name}</NavLink>)
+const Dialogs = ({chatMessage, addMessage}) => {
+    let messages = chatMessage.map(el => <p className={style.message}>{el.message}</p>)
+    let name_arr = chatMessage.map(el => <NavLink tp={'#'}>{el.person_name}</NavLink>)
 
 
     const onSubmit = (values) =>{
-        debugger
-        props.addMessage(values.dialogForm)
+        addMessage(values.dialogForm)
     }
     return (
         <div className={`${style.dialogs} cont`}>
@@ -31,9 +30,9 @@ const Dialogs = (props) => {
 }
 
 const maxLength100 = maxLengthCreator(100)
-const DialogsForm = (props) => {
+const DialogsForm = ({handleSubmit}) => {
     return(
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field  id="" name="dialogForm" component={Textaria} validate={[ required, maxLength100 ]}/>
             <button type="submit" className={style.btn} >Отправить</button>
         </form>

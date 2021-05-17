@@ -1,7 +1,7 @@
 import {authAPI} from "../API/api";
 import {stopSubmit} from "redux-form";
 
-const SET_USER_DATA = 'SET-USER-DATA'
+const SET_USER_DATA = 'auth/SET-USER-DATA'
 
 const InitializeState = {
     userId: null,
@@ -28,35 +28,31 @@ export const setUser = (userId, email, login, isAuth) => ({
 })
 
 export const authUser = () => {
-    return (dispatch) => {
-        return authAPI.authUser().then(data => {
-            if (data.resultCode === 0) {
-                let {id, email, login} = data.data
-                dispatch(setUser(id, email, login, true))
-            }
-        })
+    return async (dispatch) => {
+        const data = await authAPI.authUser()
+        if (data.resultCode === 0) {
+            let {id, email, login} = data.data
+            dispatch(setUser(id, email, login, true))
+        }
     }
 }
 export const loginUser = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.loginUser(email, password, rememberMe).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(authUser())
-            } else {
-                debugger
-                const msgError = data.messages.length > 0 ? data.messages : "Common Error"
-                dispatch(stopSubmit("login", {_error: msgError}))
-            }
-        })
+    return async (dispatch) => {
+        const data = await authAPI.loginUser(email, password, rememberMe)
+        if (data.resultCode === 0) {
+            dispatch(authUser())
+        } else {
+            const msgError = data.messages.length > 0 ? data.messages : "Common Error"
+            dispatch(stopSubmit("login", {_error: msgError}))
+        }
     }
 }
 export const logoutUser = () => {
-    return (dispatch) => {
-        authAPI.logoutUser().then(data => {
+    return async (dispatch) => {
+        const data = await authAPI.logoutUser()
             if (data.resultCode === 0) {
                 dispatch(setUser(null, null, null, false))
             }
-        })
     }
 }
 export default authReducer
