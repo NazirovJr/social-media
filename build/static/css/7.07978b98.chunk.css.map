@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/component/FormControl/FormControl.module.css"],"names":[],"mappings":"AACA,qCACI,SACJ,CAEA,0BACI,oBACJ","file":"7.07978b98.chunk.css","sourcesContent":["\r\n.formControl span {\r\n    color: red;\r\n}\r\n\r\n.error {\r\n    border: 1px solid red;\r\n}"]}

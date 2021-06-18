@@ -10,7 +10,7 @@ import {
       requestUsers
 } from "../../../../Redux/usersReducer";
 import Loader from "../../../common/preLoader/preLoader.jsx";
-import withRedirect from "../../../../HOC/hoc";
+import withRedirect from "../../../../HOC/withRedirect";
 import {compose} from "redux";
 import {
     getAmountUser,

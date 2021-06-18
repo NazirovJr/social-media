@@ -5,7 +5,7 @@ import ProfilePage from "./ProfilePage/ProfilePage";
 import {connect} from "react-redux";
 import {getProfile, setUsersProfile} from "../../../Redux/postCreatReducer";
 import {Redirect, withRouter} from "react-router-dom";
-import withRedirect from "../../../HOC/hoc";
+import withRedirect from "../../../HOC/withRedirect";
 import {compose} from "redux";
 import {getStatus, updateStatus} from "../../../Redux/postCreatReducer";
 
